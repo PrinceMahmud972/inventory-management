@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/template', function () {
-    return view('layouts.master');
-});
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -29,4 +26,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::resource('categories', CategoriesController::class);
 });
