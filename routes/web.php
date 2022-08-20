@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,4 +31,7 @@ Route::middleware([
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('categories', CategoriesController::class);
+
+    Route::resource('brands', BrandController::class);
+
 });
