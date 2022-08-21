@@ -1,3 +1,6 @@
+<!-- Initialize vue.js -->
+@vite('resources/js/app.js');
+
 <!-- jQuery -->
 <script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
@@ -52,3 +55,4 @@ $('.datatable').DataTable({
     "select": true
   });
 </script>
+
