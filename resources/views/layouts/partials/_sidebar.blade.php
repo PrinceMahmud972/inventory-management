@@ -61,6 +61,13 @@
               </li>
 
               <li class="nav-item">
+                <a href="{{ route('products.index') }}" class="nav-link  {{ class_active('products') }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Products</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Inactive Page</p>
