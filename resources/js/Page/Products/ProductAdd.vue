@@ -8,10 +8,12 @@
             <form action="" method="post">
             <div class="card-body">
                 <div class="form-group">
-                <label for="exampleInputEmail1">Name</label>
-                <input name="name" type="text" class="form-control" placeholder="Enter Category Name">
-
-                <span class="error text-danger"></span>
+                    <label>Category</label>
+                    <select name="category_id" class="form-control select2" v-model="form.category_id">
+                        <option :value="item.id" v-for="(item, index) in categories" :key="index">
+                            {{ item.name }}
+                        </option>
+                    </select>
                 </div>
             </div>
             <!-- /.card-body -->
@@ -27,7 +29,25 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex'
+    import store from '../../store'
+    import * as actions from '../../store/action-types'
     export default {
-        name: 'ProductAdd'
+        name: 'ProductAdd',
+        data() {
+            return {
+                form: {
+                    category_id: 0,
+                }
+            }
+        },
+        computed: {
+            ...mapGetters({
+                'categories': 'getCategories'
+            })
+        },
+        mounted() {
+            store.dispatch(actions.GET_CATEGORIES);
+        }
     }
 </script>
