@@ -9,8 +9,25 @@
             <div class="card-body">
                 <div class="form-group">
                     <label>Category</label>
-                    <select name="category_id" class="form-control select2" v-model="form.category_id">
-                        <option :value="item.id" v-for="(item, index) in categories" :key="index">
+                    <select
+                        class="form-control"
+                        name="form.category_id"
+                        v-model="form.category_id"
+                        >
+                        <option
+                            :value="item.id"
+                            v-for="(item, index) in categories"
+                            :key="index"
+                            >
+                            {{ item.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Brand</label>
+                    <select name="brand_id" class="form-control" v-model="form.brand_id">
+                        <option :value="item.id" v-for="(item, index) in brands" :key="index">
                             {{ item.name }}
                         </option>
                     </select>
@@ -38,16 +55,24 @@
             return {
                 form: {
                     category_id: 0,
+                    brand_id: 0,
                 }
+            }
+        },
+        methods: {
+            selectCategory(event) {
+                console.log(event);
             }
         },
         computed: {
             ...mapGetters({
-                'categories': 'getCategories'
+                'categories': 'getCategories',
+                'brands': 'getBrands'
             })
         },
         mounted() {
             store.dispatch(actions.GET_CATEGORIES);
+            store.dispatch(actions.GET_BRANDS);
         }
     }
 </script>
