@@ -2,6 +2,7 @@
 <!-- form start -->
     <form @submit.prevent="submitForm" method="post">
         <div class="row">
+            <show-error></show-error>
             <div class="col-lg-6">
                 <div class="card card-primary card-outline">
                     <div class="card-body">
@@ -47,7 +48,7 @@
 
                             <div class="form-group">
                                 <label for="">Image <span class="text-danger">*</span></label>
-                                <input type="file" class="form-control" placeholder="Product Image">
+                                <input type="file" @change="selectImage" class="form-control" placeholder="Product Image">
                             </div>
 
                             <div class="form-group">
@@ -124,8 +125,12 @@
     import {mapGetters} from 'vuex'
     import store from '../../store'
     import * as actions from '../../store/action-types'
+    import ShowError from '../utils/ShowError.vue'
     export default {
         name: 'ProductAdd',
+        components: {
+            ShowError
+        },
         data() {
             return {
                 form: {
@@ -150,6 +155,9 @@
             }
         },
         methods: {
+            selectImage(e) {
+                this.form.image = e.target.files[0];
+            },
             addItem() {
                 let item = {
                     size_id: '',
@@ -162,7 +170,19 @@
                 this.form.items.splice(index, 1);
             },
             submitForm() {
-                console.log(this.form)
+                let data = new FormData();
+                data.append('category_id', this.form.category_id);
+                data.append('brand_id', this.form.brand_id);
+                data.append('sku', this.form.sku);
+                data.append('name', this.form.name);
+                data.append('image', this.form.image);
+                data.append('cost_price', this.form.cost_price);
+                data.append('sell_price', this.form.sell_price);
+                data.append('year', this.form.year);
+                data.append('description', this.form.description);
+                data.append('status', this.form.status);
+                data.append('items', this.form.items);
+                store.dispatch(actions.ADD_PRODUCTS, data);
             }
 
         },
