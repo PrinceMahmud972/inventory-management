@@ -108,11 +108,11 @@
                                 <input type="number" v-model="item.quantity" class="form-control" placeholder="Quantity">
                             </div>
                             <div class="">
-                                <button class="btn btn-danger btn-sm" @click="deleteItem(index)"><i class="fa fa-trash"></i></button>
+                                <button class="btn btn-danger btn-sm" @click.prevent="deleteItem(index)"><i class="fa fa-trash"></i></button>
                             </div>
                         </div>
 
-                        <button class="btn btn-success mt-3" @click="addItem"><i class="fa fa-plus"></i> Add Item</button>
+                        <button class="btn btn-success mt-3" @click.prevent="addItem"><i class="fa fa-plus"></i> Add Item</button>
                     </div>
                 </div>
             </div>
@@ -134,8 +134,8 @@
         data() {
             return {
                 form: {
-                    category_id: 0,
-                    brand_id: 0,
+                    category_id: '',
+                    brand_id: '',
                     sku: '',
                     name: '',
                     image: '',
@@ -181,7 +181,7 @@
                 data.append('year', this.form.year);
                 data.append('description', this.form.description);
                 data.append('status', this.form.status);
-                data.append('items', this.form.items);
+                data.append('items', JSON.stringify(this.form.items));
                 store.dispatch(actions.ADD_PRODUCTS, data);
             }
 

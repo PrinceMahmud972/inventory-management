@@ -33,7 +33,11 @@
                     <thead>
                         <tr>
                             <th>#SL</th>
+                            <th>Image</th>
                             <th>Name</th>
+                            <th>SKU</th>
+                            <th>Category</th>
+                            <th>Brand</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -42,19 +46,37 @@
                             @foreach ($products as $key => $product)
                                 <tr>
                                     <td>{{ ++$key }}</td>
+                                    <td class="text-center">
+                                      <img class="img-fluid table-img" src="{{ asset('storage/product_images/'. $product->image) }}" alt="">
+                                    </td>
                                     <td>{{ $product->name ?? '' }}</td>
+                                    <td>{{ $product->sku ?? '' }}</td>
+                                    <td>{{ $product->category->name ?? '' }}</td>
+                                    <td>{{ $product->brand->name ?? '' }}</td>
                                     <td>
-                                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-info">
+                                        <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm btn-success mr-2">
+                                          <i class="fa fa-desktop"></i> Show
+                                        </a>
+                                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-info mr-2">
                                             <i class="fa fa-edit"></i> Edit
                                         </a>
 
-                                        <a href="javascript:;" class="btn btn-danger btn-sm sa-delete" data-form-id="product-delete-{{ $product->id }}">
+                                        {{-- <a href="javascript:" class="btn btn-danger btn-sm sa-delete" data-form-id="product-delete-{{ $product->id }}">
                                             <i class="fa fa-trash"> Delete</i>
-                                        </a>
-                                        <form id="product-delete-{{ $product->id }}" action="{{ route('products.destroy', $product->id) }}" method="POST">
+                                        </a> --}}
+                                        <form class="d-inline" action="{{ route('products.destroy', $product->id) }}" method="post">
+                                          @csrf
+                                          @method('delete')
+                                          <button class="btn btn-sm btn-danger">
+                                            <i class="fa fa-trash"></i> Delete
+                                          </button>
+                                        </form>
+
+
+                                        {{-- <form id="product-delete-{{ $product->id }}" action="{{ route('products.destroy', $product->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                        </form>
+                                        </form> --}}
                                     </td>
                                 </tr>
                             @endforeach

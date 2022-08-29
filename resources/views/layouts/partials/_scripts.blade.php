@@ -50,15 +50,6 @@
 <script src="{{ asset('admin/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
 <script>
-$('.datatable').DataTable({
-    "paging": true,
-    "lengthChange": false,
-    "searching": true,
-    "ordering": true,
-    "info": true,
-    "autoWidth": false,
-    "responsive": true,
-    "select": true
-  });
+$('.datatable').DataTable();
 </script>
 

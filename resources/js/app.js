@@ -8,6 +8,7 @@ import store from './store';
 
 import ExampleComponent from './Page/ExampleComponent.vue';
 import ProductAdd from './Page/Products/ProductAdd.vue';
+import ProductEdit from './Page/Products/ProductEdit.vue';
 
 const app = createApp({});
 
@@ -17,6 +18,7 @@ app.use(store);
 // Register Components
 app.component('ExampleComponent', ExampleComponent);
 app.component('ProductAdd', ProductAdd);
+app.component('ProductEdit', ProductEdit);
 
 app.mount('#app');
 
