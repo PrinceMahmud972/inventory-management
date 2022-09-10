@@ -40,6 +40,20 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="{{ route('dashboard') }}" class="nav-link {{ class_active('dashboard') }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('users.index') }}" class="nav-link {{ class_active('users') }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>User</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
                 <a href="{{ route('categories.index') }}" class="nav-link {{ class_active('categories') }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Category</p>
@@ -104,11 +118,10 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('users.logout') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
+                Logout
               </p>
             </a>
           </li>
