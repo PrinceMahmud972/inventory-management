@@ -9,6 +9,8 @@ import store from './store';
 import ExampleComponent from './Page/ExampleComponent.vue';
 import ProductAdd from './Page/Products/ProductAdd.vue';
 import ProductEdit from './Page/Products/ProductEdit.vue';
+import StockManage from './Page/stocks/StockManage.vue';
+import ReturnProduct from './Page/return_products/ReturnProduct.vue';
 
 const app = createApp({});
 
@@ -19,6 +21,8 @@ app.use(store);
 app.component('ExampleComponent', ExampleComponent);
 app.component('ProductAdd', ProductAdd);
 app.component('ProductEdit', ProductEdit);
+app.component('StockManage', StockManage);
+app.component('ReturnProduct', ReturnProduct);
 
 app.mount('#app');
 

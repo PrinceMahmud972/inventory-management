@@ -68,6 +68,34 @@
               </li>
 
               <li class="nav-item">
+                <a href="{{ route('stocks') }}" class="nav-link  {{ class_active('stocks') }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Stocks</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('stockHistory') }}" class="nav-link  {{ class_active('stocks/history') }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Stocks History</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('returnProducts') }}" class="nav-link  {{ class_active('return-products') }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Return Products</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('returnProductHistory') }}" class="nav-link  {{ class_active('return-products/history') }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Return Products History</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Inactive Page</p>

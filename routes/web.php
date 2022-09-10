@@ -3,7 +3,10 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReturnProductsController;
 use App\Http\Controllers\SizeController;
+use App\Http\Controllers\StocksController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +36,9 @@ Route::middleware([
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
+    // User
+    Route::resource('users', [UserController::class]);
+
     // CATEGORY
     Route::resource('categories', CategoriesController::class);
     Route::get('/api/categories', [CategoriesController::class, 'getCategoriesJson']);
@@ -46,5 +52,19 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/api/sizes', [SizeController::class, 'getSizesJson']);
 
     Route::resource('products', ProductController::class);
+    Route::get('/api/products', [ProductController::class, 'getProductsJson']);
+
+    // Stocks
+    Route::get('/stocks', [StocksController::class, 'stock'])->name('stocks');
+    Route::post('/stocks', [StocksController::class, 'stockSubmit'])->name('stockSubmit');
+    Route::get('/stocks/history', [StocksController::class, 'history'])->name('stockHistory');
+
+    // Return Products
+    Route::get('/return-products', [ReturnProductsController::class, 'returnProduct'])->name('returnProducts');
+    Route::post('/return-products', [ReturnProductsController::class, 'returnProductSubmit'])->name('returnProductSubmit');
+    Route::get('/return-products/history', [ReturnProductsController::class, 'history'])->name('returnProductHistory');
+
+
+
 
 });
